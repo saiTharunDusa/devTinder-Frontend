@@ -8,8 +8,12 @@ import { BASE_URL } from '../utils/constants';
 const Login = () => {
 	const [emailId, setEmailId] = useState('surekha@gmail.com');
 	const [password, setPassword] = useState('Surekha@12345');
+	const [firstName, setFirstName] = useState('');
+	const [lastName, setLastName] = useState('');
+	const [error, setError] = useState('');
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const [isLoginForm, setIsLoginForm] = useState(false);
 
 	const handleLoginClick = async () => {
 		try {
@@ -21,17 +25,37 @@ const Login = () => {
 			return navigate("/");
 		}
 		catch (err) {
-
+			setError(err?.response?.data);
 		}
-
+	}
+	const handleSignUpClick = async () => {
+		try {
+			const res = await axios.post(BASE_URL + "/signUp", {
+				firstName, lastName, emailId, password
+			}, { withCredentials: true })
+			dispatch(addUser(res.data.data));
+			setIsLoginForm(true);
+		}
+		catch (err) {
+			console.log(err);
+			setError(err?.response?.data);
+		}
 	}
 
 	return (
 		<div className='flex justify-center my-10'>
 			<div className="card bg-base-100 w-96 shadow-xl ">
 				<div className="card-body">
-					<h2 className="card-title justify-center">Login</h2>
+					<h2 className="card-title justify-center">{isLoginForm ? "Login" : "Sign Up"}</h2>
+					{!isLoginForm && <div>
+						<label className="input input-bordered flex items-center gap-2 my-6">
+							<input type="text" className="grow" placeholder="FirstName" value={firstName} onChange={e => setFirstName(e.target.value)} />
+						</label>
 
+						<label className="input input-bordered flex items-center gap-2 my-2">
+							<input type="text" className="grow" placeholder="LastName" value={lastName} onChange={e => setLastName(e.target.value)} />
+						</label>
+					</div>}
 					<label className="input input-bordered flex items-center gap-2 my-2">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -59,9 +83,25 @@ const Login = () => {
 						</svg>
 						<input type="password" className="grow" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
 					</label>
-					<div className="card-actions justify-center">
-						<button className="btn btn-primary" onClick={handleLoginClick}>Login</button>
+					<p className='text-red-500 font-semibold'>{error}</p>
+					<div className="card-actions justify-center m-2">
+						<button
+							className="btn btn-primary"
+							onClick={isLoginForm ? handleLoginClick : handleSignUpClick}
+						>
+							{isLoginForm ? "Login" : "Sign Up"}
+						</button>
 					</div>
+
+					<p
+						className="m-auto cursor-pointer py-2"
+						onClick={() => setIsLoginForm((value) => !value)}
+					>
+						{isLoginForm
+							? "New User? Signup Here"
+							: "Existing User? Login Here"}
+					</p>
+
 				</div>
 			</div>
 		</div>
