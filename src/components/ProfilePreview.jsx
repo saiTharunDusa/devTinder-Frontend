@@ -1,6 +1,11 @@
 import React from 'react';
 
-const ProfilePreview = ({ user, firstName, lastName, age, gender, about, skills }) => {
+const ProfilePreview = ({ user, isFeed }) => {
+    if (!user) {
+        console.log('user is null');
+        return;
+    }
+    const { firstName, lastName, age, gender, about, skills } = user;
     return (
         <div className="flex justify-center my-20 ml-10">
             <div className="card bg-base-300 w-96 shadow-xl">
@@ -44,13 +49,23 @@ const ProfilePreview = ({ user, firstName, lastName, age, gender, about, skills 
                                         key={index}
                                         className="bg-base-100 text-sm px-3 py-1 rounded-full"
                                     >
-                                        {skill}
+                                        {skills}
                                     </span>
                                 ))}
                             </div>
                         </div>
+
+                        {isFeed && <div className='flex justify-center'>
+                            <button className="btn  btn-primary mx-4" >
+                                Ignored
+                            </button><button className="btn btn-secondary mx-4" >
+                                Interested
+                            </button>
+
+                        </div>}
                     </div>
                 </div>
+
             </div>
         </div>
     );
