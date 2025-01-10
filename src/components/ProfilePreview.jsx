@@ -12,6 +12,7 @@ const ProfilePreview = ({ user, isFeed }) => {
     }
     const dispatch = useDispatch();
     const { firstName, lastName, age, gender, about, skills } = user;
+    console.log(user?.photoUrl);
 
     const sendRequests = async (status, _id) => {
         try {
@@ -30,9 +31,9 @@ const ProfilePreview = ({ user, isFeed }) => {
 
 
     return (
-        <div className="flex justify-center my-20 ml-10">
+        <div className="flex justify-center my-1 ml-6">
             <div className="card bg-base-300 w-96 shadow-xl">
-                <figure className="relative w-full ">
+                <figure className="relative w-full">
                     <img
                         src={user?.photoUrl || ''}
                         alt="profile"
@@ -40,11 +41,11 @@ const ProfilePreview = ({ user, isFeed }) => {
                     />
                 </figure>
 
-                <div className="card-body p-6">
-                    <div className="space-y-4">
+                <div className="card-normal p-4">
+                    <div className="h-auto">
                         {/* Basic Info */}
-                        <div className="space-y-2">
-                            <h2 className="text-xl font-semibold">
+                        <div className="space-y-1">
+                            <h2 className="text-lg font-semibold">
                                 {firstName} {lastName}
                             </h2>
                             <div className="text-sm text-gray-600">
@@ -54,45 +55,51 @@ const ProfilePreview = ({ user, isFeed }) => {
                         </div>
 
                         {/* About Section */}
-                        <div className="space-y-2">
+                        <div className="space-y-1">
                             <h3 className="font-medium">About</h3>
-                            <div className="bg-base-100 rounded-lg p-4">
-                                <p className="text-sm break-words overflow-y-auto max-h-48" style={{ overflowWrap: 'anywhere' }}>
+                            <div className="bg-base-100 rounded-lg p-2">
+                                <p className="text-sm break-words overflow-y-auto max-h-32" style={{ overflowWrap: 'anywhere' }}>
                                     {about}
                                 </p>
                             </div>
                         </div>
 
                         {/* Skills Section */}
-                        <div className="space-y-2">
+                        <div className="space-y-1">
                             <h3 className="font-medium">Skills</h3>
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-wrap gap-1">
                                 {skills?.map((skill, index) => (
                                     <span
                                         key={index}
-                                        className="bg-base-100 text-sm px-3 py-1 rounded-full"
+                                        className="bg-base-100 text-sm px-2 py-1 rounded-full"
                                     >
                                         {skill}
                                     </span>
                                 ))}
                             </div>
                         </div>
-
-
+                        {isFeed && (
+                            <div className="flex justify-center mt-2">
+                                <button
+                                    className="btn btn-primary mx-2"
+                                    onClick={() => sendRequests("ignored", user._id)}
+                                >
+                                    Ignore
+                                </button>
+                                <button
+                                    className="btn btn-secondary mx-2"
+                                    onClick={() => sendRequests("interested", user._id)}
+                                >
+                                    Interested
+                                </button>
+                            </div>
+                        )}
                     </div>
-                    {isFeed && <div className='flex justify-center'>
-                        <button className="btn  btn-primary mx-4" onClick={() => sendRequests("ignored", user._id)}>
-                            Ignore
-                        </button>
-                        <button className="btn btn-secondary mx-4" onClick={() => sendRequests("interested", user._id)}>
-                            Interested
-                        </button>
 
-                    </div>}
                 </div>
-
             </div>
         </div>
+
     );
 };
 

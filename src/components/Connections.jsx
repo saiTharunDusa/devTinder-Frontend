@@ -17,6 +17,8 @@ const Connections = () => {
             dispatch(addConnections(res?.data?.data));
         }
         catch (err) {
+            console.log('null-errror')
+
             console.log(err);
         }
     }
@@ -26,7 +28,7 @@ const Connections = () => {
 
     if (!connections) return;
 
-    if (connections.length == 0) return <h1>No Connections Found!</h1>
+    if (connections.length == 0) return <h1 className="flex justify-center my-10">No Connections Found!</h1>
 
 
     return (
@@ -49,12 +51,12 @@ const Connections = () => {
                                 src={photoUrl}
                             />
                         </div>
-                        <div className="text-left mx-4 ">
+                        <div className="text-left mx-4 w-full overflow-hidden">
                             <h2 className="font-bold text-xl">
                                 {firstName + " " + lastName}
                             </h2>
                             {age && gender && <p>{age + ", " + gender}</p>}
-                            <p>{about}</p>
+                            <p className="break-words whitespace-normal">{about}</p>
                             {skills && <p>{skills + ", "}</p>}
                         </div>
                     </div>

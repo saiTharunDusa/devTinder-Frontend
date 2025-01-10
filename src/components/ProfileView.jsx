@@ -27,7 +27,7 @@ const ProfileView = () => {
 
 
     return (
-        user && (<div className="flex justify-center my-20 ml-10">
+        user && (<div className="flex justify-center my-10 ml-10">
             <div className="card bg-base-300 w-96 shadow-xl justify-center">
                 <figure className="relative w-full ">
                     <img

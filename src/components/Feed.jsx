@@ -32,7 +32,7 @@ const Feed = () => {
 
     return (
         feed && (
-            <div className='flex justify-center my-10'>
+            <div className='flex justify-center my-5'>
                 <ProfilePreview user={feed[0]} isFeed={true} />
             </div>)
     )

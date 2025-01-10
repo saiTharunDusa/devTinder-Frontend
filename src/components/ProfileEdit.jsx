@@ -38,7 +38,7 @@ const ProfileEdit = () => {
         setError('');
         try {
             const res = await axios.put(BASE_URL + '/profile/edit', {
-                firstName, lastName, age, gender, about, skills
+                firstName, lastName, age, gender, about, skills, photoUrl
             }, {
                 withCredentials: true
             });
@@ -57,15 +57,13 @@ const ProfileEdit = () => {
     }
 
     return (
-        user && <div className="flex justify-center my-20">
+        user && <div className="flex justify-center my-10">
             {/* Edit Form */}
             <div className="card bg-base-300 w-96 shadow-xl">
                 <figure>
                     <img src={user.photoUrl} alt="photo" />
                 </figure>
-
                 <div className="card-body">
-
                     <label className="input input-bordered flex items-center gap-2 my-2">
                         <strong>Photo URL:</strong>
                         <input
@@ -179,11 +177,13 @@ const ProfileEdit = () => {
                         Save Profile
                     </button>
                 </div>
+
             </div>
             <ProfilePreview
                 user={user}
                 isFeed={false}
             />
+
             {showToast && (
                 <div className="toast toast-top toast-center">
                     <div className="alert alert-success">

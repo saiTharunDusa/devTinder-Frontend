@@ -65,22 +65,23 @@ const ConnectionRequest = () => {
                                 src={photoUrl}
                             />
                         </div>
-                        <div className="text-left mx-4 ">
+                        <div className="text-left mx-4 w-full overflow-hidden">
                             <h2 className="font-bold text-xl">
                                 {firstName + " " + lastName}
                             </h2>
                             {age && gender && <p>{age + ", " + gender}</p>}
-                            <p>{about}</p>
+                            <p className="break-words whitespace-normal">{about}</p>
                             {skills && <p>{skills}</p>}
-                        </div>
-                        <div className='flex justify-center'>
-                            <button className="btn btn-info mx-4" onClick={() => reviewRequests("rejected", request._id)} >
-                                Reject
-                            </button><button className="btn btn-secondary mx-4" onClick={() => reviewRequests("accepted", request._id)}  >
-                                Accept
-                            </button>
+                            <div className='flex my-4'>
+                                <button className="btn btn-info mx-2 justify-end" onClick={() => reviewRequests("rejected", request._id)} >
+                                    Reject
+                                </button><button className="btn btn-secondary justify-end" onClick={() => reviewRequests("accepted", request._id)}  >
+                                    Accept
+                                </button>
 
+                            </div>
                         </div>
+
                     </div>
                 );
             })}

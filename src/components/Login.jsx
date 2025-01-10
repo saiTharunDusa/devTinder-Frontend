@@ -14,6 +14,7 @@ const Login = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const [isLoginForm, setIsLoginForm] = useState(false);
+	const [showPassword, setShowPassword] = useState(false);
 
 	const handleLoginClick = async () => {
 		try {
@@ -88,7 +89,10 @@ const Login = () => {
 								d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
 								clipRule="evenodd" />
 						</svg>
-						<input type="password" className="grow" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+						<input type={showPassword ? "text" : "password"} className="grow" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+						<label className="cursor-pointer label">
+							<input type="checkbox" defaultChecked={showPassword} onChange={(e) => setShowPassword(e.target.checked)} className="checkbox checkbox-secondary" />
+						</label>
 					</label>
 					<p className='text-red-500 font-semibold'>{error}</p>
 					<div className="card-actions justify-center m-2">
