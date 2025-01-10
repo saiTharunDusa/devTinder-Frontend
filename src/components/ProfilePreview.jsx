@@ -57,7 +57,7 @@ const ProfilePreview = ({ user, isFeed }) => {
 
                         {isFeed && <div className='flex justify-center'>
                             <button className="btn  btn-primary mx-4" >
-                                Ignored
+                                Ignore
                             </button><button className="btn btn-secondary mx-4" >
                                 Interested
                             </button>
