@@ -49,7 +49,7 @@ const ProfilePreview = ({ user, isFeed }) => {
                                         key={index}
                                         className="bg-base-100 text-sm px-3 py-1 rounded-full"
                                     >
-                                        {skills}
+                                        {skill}
                                     </span>
                                 ))}
                             </div>

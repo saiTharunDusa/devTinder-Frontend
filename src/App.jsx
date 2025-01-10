@@ -6,6 +6,7 @@ import appStore from "./utils/appStore"
 import Feed from "./components/Feed"
 import ProfileView from "./components/ProfileView"
 import ProfileEdit from "./components/ProfileEdit"
+import Connections from "./components/Connections"
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
 							<Route path="/login" element={<Login />} />
 							<Route path="/profile" element={<ProfileView />} />
 							<Route path="/edit" element={<ProfileEdit />} />
+							<Route path="/connections" element={<Connections />} />
 						</Route>
 					</Routes>
 				</BrowserRouter>
