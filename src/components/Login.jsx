@@ -21,7 +21,7 @@ const Login = () => {
 				emailId, password
 			}, { withCredentials: true })
 
-			dispatch(addUser(res.data.data));
+			dispatch(addUser(res?.data?.data));
 			return navigate("/");
 		}
 		catch (err) {
@@ -33,8 +33,15 @@ const Login = () => {
 			const res = await axios.post(BASE_URL + "/signUp", {
 				firstName, lastName, emailId, password
 			}, { withCredentials: true })
-			dispatch(addUser(res.data.data));
+			dispatch(addUser(res?.data?.data));
+			const res1 = await axios.post(BASE_URL + "/login", {
+				emailId, password
+			}, {
+				withCredentials: true
+			})
+			dispatch(addUser(res1?.data?.data));
 			setIsLoginForm(true);
+			return navigate("/edit");
 		}
 		catch (err) {
 			console.log(err);
@@ -92,7 +99,6 @@ const Login = () => {
 							{isLoginForm ? "Login" : "Sign Up"}
 						</button>
 					</div>
-
 					<p
 						className="m-auto cursor-pointer py-2"
 						onClick={() => setIsLoginForm((value) => !value)}
