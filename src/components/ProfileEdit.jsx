@@ -42,7 +42,6 @@ const ProfileEdit = () => {
             }, {
                 withCredentials: true
             });
-            console.log(res?.data?.data);
             dispatch(addUser(res?.data?.data));
             setShowToast(true);
             setTimeout(() => {
@@ -179,7 +178,7 @@ const ProfileEdit = () => {
                 </div>
 
             </div>
-            <ProfilePreview firstName={firstName} lastName={lastName} age={age} gender={gender} about={about} skills={skills} photoUrl={photoUrl} isFeed={false} />
+            <ProfilePreview _id={user._id} firstName={firstName} lastName={lastName} age={age} gender={gender} about={about} skills={skills} photoUrl={photoUrl} isFeed={false} />
             {showToast && (
                 <div className="toast toast-top toast-center">
                     <div className="alert alert-success">

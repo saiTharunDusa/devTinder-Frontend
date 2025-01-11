@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeUserFromFeed } from '../utils/feedSlice';
 import { addRequests } from '../utils/requestsSlice';
 
-const ProfilePreview = ({ firstName, lastName, age, gender, about, skills, photoUrl, isFeed }) => {
+const ProfilePreview = ({ _id, firstName, lastName, age, gender, about, skills, photoUrl, isFeed }) => {
 
     const dispatch = useDispatch();
 
@@ -14,7 +14,6 @@ const ProfilePreview = ({ firstName, lastName, age, gender, about, skills, photo
             const res = await axios.post(BASE_URL + "/send/request/" + status + "/" + _id, {}, {
                 withCredentials: true
             })
-            console.log(res);
             dispatch(removeUserFromFeed(_id));
             dispatch(addRequests(res?.data?.data));
         }
@@ -77,13 +76,13 @@ const ProfilePreview = ({ firstName, lastName, age, gender, about, skills, photo
                             <div className="flex justify-center mt-2">
                                 <button
                                     className="btn btn-primary mx-2"
-                                    onClick={() => sendRequests("ignored", user._id)}
+                                    onClick={() => sendRequests("ignored", _id)}
                                 >
                                     Ignore
                                 </button>
                                 <button
                                     className="btn btn-secondary mx-2"
-                                    onClick={() => sendRequests("interested", user._id)}
+                                    onClick={() => sendRequests("interested", _id)}
                                 >
                                     Interested
                                 </button>

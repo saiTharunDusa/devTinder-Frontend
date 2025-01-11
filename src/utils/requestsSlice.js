@@ -10,8 +10,10 @@ const requestsSlice = createSlice({
             return action.payload;
         },
         removeRequests : (state, action) => {
-            const newRequests = state.filter((req) => req._id !== action.payload);
-            return newRequests;
+            const index = state.findIndex((req) => req._id === action.payload);
+            if (index !== -1) {
+                state.splice(index, 1);
+            }
         }
     }
 })
