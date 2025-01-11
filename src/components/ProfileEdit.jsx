@@ -179,11 +179,7 @@ const ProfileEdit = () => {
                 </div>
 
             </div>
-            <ProfilePreview
-                user={user}
-                isFeed={false}
-            />
-
+            <ProfilePreview firstName={firstName} lastName={lastName} age={age} gender={gender} about={about} skills={skills} photoUrl={photoUrl} isFeed={false} />
             {showToast && (
                 <div className="toast toast-top toast-center">
                     <div className="alert alert-success">

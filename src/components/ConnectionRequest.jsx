@@ -50,8 +50,14 @@ const ConnectionRequest = () => {
             <h1 className="text-bold text-Black text-3xl">Connection Requests</h1>
 
             {requests.map((request) => {
+
+                if (!request?.fromUserId) {
+                    return <h1 className="flex justify-center my-10">No Requests founds!</h1>;
+                }
+
                 const { _id, firstName, lastName, photoUrl, age, gender, about, skills } =
                     request?.fromUserId;
+                console.log(request?.fromUserId);
 
                 return (
                     <div
@@ -71,7 +77,7 @@ const ConnectionRequest = () => {
                             </h2>
                             {age && gender && <p>{age + ", " + gender}</p>}
                             <p className="break-words whitespace-normal">{about}</p>
-                            {skills && <p>{skills}</p>}
+                            {skills && <p>{skills + ", "}</p>}
                             <div className='flex my-4'>
                                 <button className="btn btn-info mx-2 justify-end" onClick={() => reviewRequests("rejected", request._id)} >
                                     Reject

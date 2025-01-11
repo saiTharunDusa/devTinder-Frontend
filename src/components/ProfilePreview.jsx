@@ -1,18 +1,13 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { BASE_URL } from '../utils/constants';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeUserFromFeed } from '../utils/feedSlice';
 import { addRequests } from '../utils/requestsSlice';
 
-const ProfilePreview = ({ user, isFeed }) => {
-    if (!user) {
-        console.log('user is null');
-        return;
-    }
+const ProfilePreview = ({ firstName, lastName, age, gender, about, skills, photoUrl, isFeed }) => {
+
     const dispatch = useDispatch();
-    const { firstName, lastName, age, gender, about, skills } = user;
-    console.log(user?.photoUrl);
 
     const sendRequests = async (status, _id) => {
         try {
@@ -35,7 +30,7 @@ const ProfilePreview = ({ user, isFeed }) => {
             <div className="card bg-base-300 w-96 shadow-xl">
                 <figure className="relative w-full">
                     <img
-                        src={user?.photoUrl || ''}
+                        src={photoUrl || ''}
                         alt="profile"
                         className="w-full h-full object-cover"
                     />
