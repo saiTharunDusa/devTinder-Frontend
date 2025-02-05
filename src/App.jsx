@@ -8,6 +8,7 @@ import ProfileView from "./components/ProfileView"
 import ProfileEdit from "./components/ProfileEdit"
 import Connections from "./components/Connections"
 import ConnectionRequest from "./components/ConnectionRequest"
+import Chat from "./components/Chat"
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
 							<Route path="/edit" element={<ProfileEdit />} />
 							<Route path="/connections" element={<Connections />} />
 							<Route path="/requests" element={<ConnectionRequest />} />
+							<Route path="/chat/:targetUserId" element={<Chat/>}/>
 						</Route>
 					</Routes>
 				</BrowserRouter>
